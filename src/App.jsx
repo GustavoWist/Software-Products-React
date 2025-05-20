@@ -2,13 +2,13 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import { useState } from 'react';
 import './App.css';
 import eu from '/eu.jpg';
-import Login from './login';
-import Products from './products';
-import Registrar_produto from './registrar_produto';
-import ProductDetails from './ProductDetails';
-import Dashboard from './Dashboard';
-import Register from './Register';
-import Ativacao from './Activate';
+import Login from './pages/Login';
+import Products from './pages/Products';
+import RegisterProduct from './pages/RegisterProduct';
+import ProductDetails from './pages/ProductDetails';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Register from './pages/Register';
+import Ativacao from './pages/Activate';
 
 function Home() {
   return (
@@ -80,7 +80,7 @@ function App() {
           path="/registrar_produto"
           element={
             <RotaProtegida isLoggedIn={isLoggedIn}>
-              <Registrar_produto />
+              <RegisterProduct />
             </RotaProtegida>
           }
         />
