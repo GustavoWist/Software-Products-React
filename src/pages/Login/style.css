@@ -1,0 +1,54 @@
+.login-container {
+    max-width: 400px;
+    margin: 5rem auto;
+    padding: 2rem;
+    background-color: #a8a8a8;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(189, 189, 189, 0.7);
+  }
+  
+  .login-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #000000;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  }
+  
+  .login-container label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #333;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  }
+  
+  .login-container input {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border: 0px solid #e2e2e2;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: #e0e0e0;
+    color: #302525;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  }
+  
+  .login-container button {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #008f6b;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  }
+  
+  .login-container button:hover {
+    background-color: #004e0a;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  }
+  
