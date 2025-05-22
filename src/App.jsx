@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import './App.css';
-import eu from '/eu.jpg';
 import Login from './pages/Login';
 import Products from './pages/Products';
 import RegisterProduct from './pages/RegisterProduct';
@@ -9,28 +8,9 @@ import ProductDetails from './pages/ProductDetails';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Register from './pages/Register';
 import Ativacao from './pages/Activate';
+import Sales from './pages/Sales';
+import SalesHistory from './pages/SalesHistory';
 
-function Home() {
-  return (
-    <>
-      <div>
-        <a href="https://linkedin.com/in/gustavo-santos-319317269/" target='_blank'>
-          <img src={eu} className="logo eu" alt="EU logo" />
-        </a>
-      </div>
-      <div className="card">
-        <Link to="/produtos">
-          <button>Produtos</button>
-        </Link>
-      </div>
-      <div className='regisprod'>
-        <Link to='/registrar_produto'>
-          <button>Registrar Produto</button>
-        </Link>
-      </div>
-    </>
-  );
-}
 
 // Rota protegida
 function RotaProtegida({ isLoggedIn, children }) {
@@ -38,7 +18,13 @@ function RotaProtegida({ isLoggedIn, children }) {
 }
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem('token') !== null;
+});
+  const logout = () => {
+  localStorage.removeItem('token');
+  setIsLoggedIn(false);
+};
 
   return (
     <Router>
@@ -54,20 +40,13 @@ function App() {
           path="/dashboard"
           element={
             <RotaProtegida isLoggedIn={isLoggedIn}>
-              <Dashboard />
+              <Dashboard onLogout={logout} />
             </RotaProtegida>
           }
         />
         <Route path="/register" element={<Register />} />
         {/* Outras rotas protegidas */}
-        <Route
-          path="/"
-          element={
-            <RotaProtegida isLoggedIn={isLoggedIn}>
-              <Home />
-            </RotaProtegida>
-          }
-        />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route
           path="/produtos"
           element={
@@ -92,6 +71,22 @@ function App() {
             </RotaProtegida>
           }
         />
+        <Route
+          path="/vendas"
+          element={
+            <RotaProtegida isLoggedIn={isLoggedIn}>
+              <Sales />
+            </RotaProtegida>
+          }
+        />
+        <Route 
+          path='historico_vendas'
+          element={
+            <RotaProtegida isLoggedIn={isLoggedIn}>
+              <SalesHistory />
+            </RotaProtegida>
+          }
+          />
       </Routes>
     </Router>
   );

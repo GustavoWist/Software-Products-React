@@ -7,7 +7,13 @@ export default function Products() {
   const [uploadingId, setUploadingId] = useState(null);
 
   const fetchProdutos = () => {
-    fetch("http://localhost:5000/produtos")
+    const token = localStorage.getItem("token");
+
+    fetch("http://localhost:5000/produtos", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setProdutos(data))
       .catch((err) => console.error("Erro ao buscar produtos:", err));
@@ -22,8 +28,13 @@ export default function Products() {
     formData.append("imagem", file);
     setUploadingId(produtoId);
 
+    const token = localStorage.getItem("token");
+
     fetch(`http://localhost:5000/produtos/${produtoId}/imagem`, {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     })
       .then((res) => res.json())
@@ -65,10 +76,13 @@ export default function Products() {
                 alt={produto.nome}
               />
             ) : (
-               <div className="image-upload-container">
+              <div className="image-upload-container">
                 <p className="no-image">Sem imagem</p>
-              
-                <label htmlFor={`upload-${produto.id}`} className="custom-upload-label">
+
+                <label
+                  htmlFor={`upload-${produto.id}`}
+                  className="custom-upload-label"
+                >
                   Adicionar imagem
                 </label>
                 <input
@@ -80,7 +94,7 @@ export default function Products() {
                     if (file) handleImagemUpload(produto.id, file);
                   }}
                 />
-              
+
                 {uploadingId === produto.id && (
                   <p className="uploading">Enviando imagem...</p>
                 )}
@@ -92,4 +106,3 @@ export default function Products() {
     </>
   );
 }
-
