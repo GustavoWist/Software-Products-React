@@ -1,7 +1,17 @@
 import { Link } from 'react-router-dom';
 import './style.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard({ onLogout }) {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    onLogout();
+    navigate('/');
+
+};
+
   return (
     <div className="dashboard-container">
       <h2>Bem-vindo!</h2>
@@ -19,7 +29,7 @@ export default function Dashboard({ onLogout }) {
           <button>Histórico de Vendas</button>
         </Link>
       </div>
-      <button onClick={onLogout} className="logout-button">Sair</button>
+      <button onClick={handleLogout} className="logout-button">Sair</button>
     </div>
   );
 }
