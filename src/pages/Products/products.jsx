@@ -51,13 +51,10 @@ export default function Products() {
   return (
     <>
       <h1>Produtos</h1>
+      <a href='/dashboard'>voltar</a>
       <div className="product-container">
         {produtos.map((produto) => (
           <div key={produto.id} className="product-card">
-            <Link
-              to={`/produto/${produto.id}`}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
               <h3>{produto.nome}</h3>
               <p>
                 <strong>Preço:</strong> R$ {produto.preco}
@@ -68,13 +65,19 @@ export default function Products() {
               <p>
                 <strong>Status:</strong> {produto.status}
               </p>
-            </Link>
-
             {produto.imagem ? (
-              <img
-                src={`http://localhost:5000${produto.imagem}`}
-                alt={produto.nome}
-              />
+              <>
+                <img
+                  src={`http://localhost:5000${produto.imagem}`}
+                  alt={produto.nome}
+                />
+                <Link
+                  to={`/produto/${produto.id}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <button>Editar produto</button>
+                </Link>
+              </>
             ) : (
               <div className="image-upload-container">
                 <p className="no-image">Sem imagem</p>
