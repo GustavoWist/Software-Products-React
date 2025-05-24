@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './sales.css';
-function Sales() {
+export default function Sales() {
   const [produtos, setProdutos] = useState([]);
   const [produtoId, setProdutoId] = useState('');
   const [quantidade, setQuantidade] = useState(1);
@@ -94,5 +94,3 @@ function Sales() {
     </div>
   );
 }
-
-export default Sales;

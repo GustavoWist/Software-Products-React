@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./style.css";
 
@@ -77,7 +77,7 @@ export default function ProductDetails() {
     }
   };
 
-  if (loading) return <p>Wait...</p>;
+  if (loading) return <p>Carregando...</p>;
   if (error) return <p>{error}</p>;
 
   return (

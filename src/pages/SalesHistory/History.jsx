@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './History.css';
 
-function SalesHistory() {
+export default function SalesHistory() {
   const [vendas, setVendas] = useState([]);
   const [erro, setErro] = useState('');
   const token = localStorage.getItem('token');
@@ -65,5 +65,3 @@ function SalesHistory() {
     </div>
   );
 }
-
-export default SalesHistory;
