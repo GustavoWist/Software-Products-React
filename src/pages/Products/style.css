@@ -1,127 +1,155 @@
-/* Products.css */
+/* Fundo e container principal dos produtos */
+.products-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(270deg, #51315e, #080611, #757575);
+  background-size: 600% 600%;
+  animation: gradientAnimation 20s ease infinite;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+}
 
-/* Contêiner geral para os produtos */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animação fade-in (pode reutilizar a mesma do dashboard.css) */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botão voltar */
+.back-button {
+  display: inline-block;
+  padding: 0.9rem 1.5rem;
+  background-color: #4b4b4b;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  text-align: center;
+  width: 150px;
+  user-select: none;
+  text-transform: uppercase;
+}
+
+.back-button:hover {
+  background-color: #757575;
+  transform: scale(1.05);
+}
+
+/* Container geral para os produtos */
 .product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 1rem;
-    margin-top: 20px;
-  }
-  
-  /* Estilo para cada cartão de produto */
-  .product-card {
-    border: 0px solid #ddd;
-    padding: 1rem;
-    border-radius: 10px;
-    width: 250px;
-    margin: 1rem;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #353535;
-  }
-  .no-image{
-    border: 1px solid #ddd;
-    padding: 1rem;
-    border-radius:10px;
-    width: 180px;
-    margin: 1rem;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #363636;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 20px;
+}
 
-  .product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(218, 99, 99, 0.2);
-  }
-  
-  /* Estilo do título e detalhes do produto */
-  .product-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .product-card p {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .product-card .no-image {
-    font-style: italic;
-    color: gray;
-  }
-  
-  /* Estilo da imagem do produto */
-  .product-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    max-height: 200px;
-    object-fit: cover;
-  }
-  
-  /* Estilo para o campo de upload de imagem */
-  .product-card input[type="file"] {
-    padding: 8px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    background-color: #f9f9f9;
-  }
-  
-  /* Estilo para o botão de upload de imagem */
-  .product-card .upload-btn {
-    font-size: 14px;
-    color: #007bff;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .product-card .upload-btn:hover {
-    text-decoration: underline;
-  }
-  
-  /* Estilo para mostrar o estado de envio da imagem */
-  .product-card .uploading {
-    font-size: 14px;
-    color: orange;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  /* Estilo para o título da página de produtos */
-  h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: bold;
-  }
-  .image-upload-container input[type="file"] {
-    display: none;
-  }
-  .image-upload-container {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+/* Estilo para cada cartão de produto */
+.product-card {
+  border: 0px solid #ddd;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 250px;
+  margin: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #353535;
+}
 
-    .custom-upload-label {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white !important; /* Garantindo que a cor do texto seja branca */
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-    margin-top: 5px;
- }
-  
-    .custom-upload-label:hover {
-    background-color: #0056b3;
+.no-image {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 180px;
+  margin: 1rem auto;
+  text-align: center;
+  color: #ccc;
+  font-style: italic;
+  user-select: none;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(53, 53, 53, 0.5);
+}
+
+.product-card img {
+  max-width: 100%;
+  max-height: 200px;
+  margin-bottom: 1rem;
+  border-radius: 15px;
+  object-fit: contain;
+}
+
+/* Botão Editar */
+.product-card button {
+  padding: 0.8rem 1.2rem;
+  background-color: #494949;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+  background-color: #575fcf;
+}
+
+/* Upload container */
+.image-upload-container {
+  margin-top: 10px;
+}
+
+/* Input file escondido */
+input[type="file"] {
+  display: none;
+}
+
+/* Label customizado para upload */
+.custom-upload-label {
+  display: inline-block;
+  padding: 0.7rem 1rem;
+  background-color: #575fcf;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.custom-upload-label:hover {
+  background-color: #3b3b98;
+}
+
+.uploading {
+  margin-top: 5px;
+  font-style: italic;
+  color: #ccc;
 }

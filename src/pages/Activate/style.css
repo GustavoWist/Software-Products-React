@@ -1,42 +1,139 @@
+/* Container geral */
 .ativacao-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 2rem;
-    border-radius: 15px;
-    background-color: #8b8b8b;
-    box-shadow: 0 2px 6px rgba(168, 168, 168, 0.1);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  background: linear-gradient(270deg, #252525, #444444, #444444);
+  background-size: 600% 600%;
+  animation: gradientAnimation 20s ease infinite;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+/* Animação do gradiente */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Título */
+.ativacao-container > h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.8rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Mensagem de erro/sucesso */
+.ativacao-message {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #ff6b6b;
+  text-shadow: 0 0 5px rgba(255, 107, 107, 0.7);
+  text-align: center;
+}
+
+/* Formulário com vidro fosco */
+.ativacao-form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem 2.5rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 380px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Animação fadeInUp */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .ativacao-container h2 {
-    margin-bottom: 1rem;
-    text-align: center;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .ativacao-container form {
-    display: flex;
-    flex-direction: column;
+}
+
+/* Labels */
+.ativacao-label {
+  font-weight: 600;
+  color: #e1e1e1;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/* Inputs */
+.ativacao-input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-weight: 500;
+  transition: box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.ativacao-input:focus {
+  box-shadow: 0 0 8px #575fcf;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Botão */
+.ativacao-button {
+  margin-top: 0.8rem;
+  width: 100%;
+  padding: 0.9rem 0;
+  background-color: #3b3b98;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ativacao-button:hover {
+  background-color: #575fcf;
+  transform: scale(1.05);
+}
+
+/* Container para redirecionar ao login */
+.ativacao-login-redirect {
+  margin-top: 1.8rem;
+  text-align: center;
+  color: #bbb;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.ativacao-login-redirect p {
+  margin-bottom: 0.6rem;
+}
+
+/* Responsividade */
+@media (max-width: 420px) {
+  .ativacao-form {
+    width: 90vw;
+    padding: 1.5rem 1.8rem;
   }
-  
-  .ativacao-container label {
-    margin-top: 1rem;
-    margin-bottom: 0.3rem;
-  }
-  
-  .ativacao-container input {
-    padding: 0.5rem;
-    font-size: 1rem;
-  }
-  
-  .ativacao-container button {
-    margin-top: 1.5rem;
-    padding: 0.75rem;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .ativacao-container button:hover {
-    background-color: #215723;
-  }
-  
+}

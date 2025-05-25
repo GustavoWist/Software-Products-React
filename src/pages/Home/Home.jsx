@@ -11,6 +11,9 @@ export default function Home() {
         <Link to="/register">
           <button>Registra-se</button>
         </Link>
+        <Link to="/ativar">
+          <button>Ativar Conta</button>
+        </Link>
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
-// src/Ativacao.jsx
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './style.css';
 
 export default function Ativacao() {
@@ -15,7 +14,7 @@ export default function Ativacao() {
     const response = await fetch('http://localhost:5000/activate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, code })
+      body: JSON.stringify({ email, code }),
     });
 
     const data = await response.json();
@@ -31,27 +30,37 @@ export default function Ativacao() {
   return (
     <div className="ativacao-container">
       <h2>Ativar Conta</h2>
-      {mensagem && <p>{mensagem}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>Email:</label>
+      {mensagem && <p className="ativacao-message">{mensagem}</p>}
+      <form onSubmit={handleSubmit} className="ativacao-form">
+        <label className="ativacao-label">Email:</label>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="ativacao-input"
+          placeholder="seuemail@exemplo.com"
         />
 
-        <label>Código de Ativação:</label>
+        <label className="ativacao-label">Código de Ativação:</label>
         <input
           type="text"
           value={code}
           onChange={(e) => setCode(e.target.value)}
           required
+          className="ativacao-input"
+          placeholder="Código enviado por email"
         />
 
-        <button type="submit">Ativar</button>
+        <button type="submit" className="ativacao-button">Ativar</button>
       </form>
+
+      <div className="ativacao-login-redirect">
+        <p>Sua conta já está ativada?</p>
+        <Link to="/login" style={{ display: 'block' }}>
+          <button className="ativacao-button">Entrar</button>
+        </Link>
+      </div>
     </div>
   );
 }
-

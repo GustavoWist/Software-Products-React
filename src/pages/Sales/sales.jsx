@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import './sales.css';
+import './style.css';
+
 export default function Sales() {
   const [produtos, setProdutos] = useState([]);
   const [produtoId, setProdutoId] = useState('');
@@ -9,7 +10,6 @@ export default function Sales() {
 
   const token = localStorage.getItem('token');
 
-  // Buscar produtos do usuário (ou todos) para escolher no select
   useEffect(() => {
     fetch('http://localhost:5000/produtos', {
       headers: { 'Authorization': `Bearer ${token}` }
@@ -17,13 +17,14 @@ export default function Sales() {
       .then(res => res.json())
       .then(data => setProdutos(data))
       .catch(() => setMensagem('Erro ao buscar produtos.'));
-  }, []);
+  }, [token]);
 
-  // Atualiza valor total ao mudar produto ou quantidade
   useEffect(() => {
     const produto = produtos.find(p => p.id === Number(produtoId));
     if (produto) {
-      setValorTotal(produto.preco * quantidade); // assumindo que o produto tem "preco"
+      setValorTotal(produto.preco * quantidade);
+    } else {
+      setValorTotal(0);
     }
   }, [produtoId, quantidade, produtos]);
 
@@ -64,11 +65,11 @@ export default function Sales() {
   return (
     <div className="sales-container">
       <h2>Registrar Venda</h2>
-      {mensagem && <p>{mensagem}</p>}
+      {mensagem && <p className="message">{mensagem}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <label>Produto:</label>
-        <select value={produtoId} onChange={e => setProdutoId(e.target.value)}>
+      <form onSubmit={handleSubmit} className="sales-form">
+        <label htmlFor="produto">Produto:</label>
+        <select id="produto" value={produtoId} onChange={e => setProdutoId(e.target.value)}>
           <option value="">-- Selecione --</option>
           {produtos.map(prod => (
             <option key={prod.id} value={prod.id}>
@@ -77,8 +78,9 @@ export default function Sales() {
           ))}
         </select>
 
-        <label>Quantidade:</label>
+        <label htmlFor="quantidade">Quantidade:</label>
         <input
+          id="quantidade"
           type="number"
           min="1"
           value={quantidade}
@@ -86,10 +88,15 @@ export default function Sales() {
           required
         />
 
-        <label>Valor Total:</label>
-        <input type="text" value={`R$ ${valorTotal.toFixed(2)}`} readOnly />
+        <label htmlFor="valorTotal">Valor Total:</label>
+        <input
+          id="valorTotal"
+          type="text"
+          value={`R$ ${valorTotal.toFixed(2)}`}
+          readOnly
+        />
 
-        <button type="submit">Registrar Venda</button>
+        <button type="submit" className="btn-submit">Registrar Venda</button>
       </form>
     </div>
   );

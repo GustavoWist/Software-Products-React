@@ -49,22 +49,22 @@ export default function Products() {
   };
 
   return (
-    <>
-      <h1>Produtos</h1>
-      <a href='/dashboard'>voltar</a>
+    <div className="products-page fade-in-up">
+      <div className="header-container">
+        <h1>Produtos</h1>
+        <a href="/dashboard" className="back-button">
+          Voltar
+        </a>
+      </div>
+
       <div className="product-container">
         {produtos.map((produto) => (
           <div key={produto.id} className="product-card">
-              <h3>{produto.nome}</h3>
-              <p>
-                <strong>Preço:</strong> R$ {produto.preco}
-              </p>
-              <p>
-                <strong>Quantidade:</strong> {produto.quantidade}
-              </p>
-              <p>
-                <strong>Status:</strong> {produto.status}
-              </p>
+            <h3>{produto.nome}</h3>
+            <p><strong>Preço:</strong> R$ {produto.preco}</p>
+            <p><strong>Quantidade:</strong> {produto.quantidade}</p>
+            <p><strong>Status:</strong> {produto.status}</p>
+
             {produto.imagem ? (
               <>
                 <img
@@ -81,7 +81,6 @@ export default function Products() {
             ) : (
               <div className="image-upload-container">
                 <p className="no-image">Sem imagem</p>
-
                 <label
                   htmlFor={`upload-${produto.id}`}
                   className="custom-upload-label"
@@ -97,7 +96,6 @@ export default function Products() {
                     if (file) handleImagemUpload(produto.id, file);
                   }}
                 />
-
                 {uploadingId === produto.id && (
                   <p className="uploading">Enviando imagem...</p>
                 )}
@@ -106,6 +104,6 @@ export default function Products() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

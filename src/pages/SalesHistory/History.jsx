@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './History.css';
+import './style.css';
 
 export default function SalesHistory() {
   const [vendas, setVendas] = useState([]);

@@ -1,0 +1,143 @@
+/* Container geral */
+.sales-history-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+/* Título */
+.sales-history-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+/* Mensagem de erro */
+.erro {
+  color: #ff6b6b;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Mensagem de "nenhuma venda" */
+.sales-history-container > p {
+  font-style: italic;
+  color: #ccc;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  color: #eee;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Cabeçalho da tabela */
+thead {
+  background: #4a3f6f;
+}
+
+thead th {
+  padding: 12px 18px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: left;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid #6c5ce7;
+}
+
+/* Linhas do corpo */
+tbody tr {
+  background: rgba(255, 255, 255, 0.05);
+  transition: background-color 0.3s ease;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+tbody tr:hover {
+  background-color: rgba(87, 95, 207, 0.3);
+  cursor: default;
+}
+
+/* Células */
+tbody td {
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+/* Valores monetários */
+tbody td:nth-child(3) {
+  font-weight: 600;
+  color: #a29bfe;
+}
+
+/* Data */
+tbody td:nth-child(4) {
+  font-style: italic;
+  color: #b2bec3;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .sales-history-container {
+    padding: 1rem 0.8rem;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 1rem;
+  }
+
+  tbody td {
+    padding-left: 50%;
+    position: relative;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+
+  tbody td::before {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    font-weight: 700;
+    color: #6c5ce7;
+    white-space: nowrap;
+  }
+
+  tbody td:nth-of-type(1)::before { content: "Produto"; }
+  tbody td:nth-of-type(2)::before { content: "Quantidade"; }
+  tbody td:nth-of-type(3)::before { content: "Valor Total"; }
+  tbody td:nth-of-type(4)::before { content: "Data"; }
+}

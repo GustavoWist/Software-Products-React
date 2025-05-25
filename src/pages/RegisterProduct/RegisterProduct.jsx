@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import './style.css'
-
+import "./style.css"
 export default function RegisterProduct() {
   const [form, setForm] = useState({
     nome: '',
@@ -10,9 +9,9 @@ export default function RegisterProduct() {
     imagem: null,
   });
 
-  const [produtoSalvo, setProdutoSalvo] = useState(false); // Novo estado
-  const [imagemSelecionada, setImagemSelecionada] = useState(null); // Novo estado para nome do arquivo
-  const [imagemPreview, setImagemPreview] = useState(null); // Novo estado para pré-visualização da imagem
+  const [produtoSalvo, setProdutoSalvo] = useState(false);
+  const [imagemSelecionada, setImagemSelecionada] = useState(null);
+  const [imagemPreview, setImagemPreview] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,34 +21,35 @@ export default function RegisterProduct() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setForm((prev) => ({ ...prev, imagem: file }));
-    setImagemSelecionada(file ? file.name : null); // Atualiza o estado com o nome do arquivo
+    setImagemSelecionada(file ? file.name : null);
 
-    // Cria a URL para pré-visualização da imagem
     if (file) {
       const previewUrl = URL.createObjectURL(file);
       setImagemPreview(previewUrl);
+    } else {
+      setImagemPreview(null);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const data = new FormData();
     data.append('nome', form.nome);
     data.append('preco', form.preco);
     data.append('quantidade', form.quantidade);
     data.append('status', form.status);
-  
+
     if (form.imagem) {
       data.append('imagem', form.imagem);
     }
-  
-    const token = localStorage.getItem("token"); // PEGANDO O TOKEN
-  
+
+    const token = localStorage.getItem("token");
+
     fetch('http://localhost:5000/register_produto', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`, // ENVIANDO O TOKEN NO HEADER
+        Authorization: `Bearer ${token}`,
       },
       body: data,
     })
@@ -62,10 +62,8 @@ export default function RegisterProduct() {
         console.error('Erro ao registrar produto:', error);
       });
   };
-  
 
   const handleNovoRegistro = () => {
-    // Reseta o formulário
     setForm({
       nome: '',
       preco: '',
@@ -73,75 +71,94 @@ export default function RegisterProduct() {
       status: 'Inativo',
       imagem: null,
     });
-    setImagemSelecionada(null); // Limpa o nome da imagem selecionada
-    setImagemPreview(null); // Limpa a pré-visualização da imagem
+    setImagemSelecionada(null);
+    setImagemPreview(null);
     setProdutoSalvo(false);
   };
 
   return (
-    <div className="form-container">
-      <h2>Produto Salvo</h2>
+    <div className="register-page-wrapper">
+      <div className="register-form-container">
+        <h2>Registrar Produto</h2>
 
-      {produtoSalvo ? (
-        <>
-          <p style={{ color: 'green' }}>Produto registrado com sucesso!</p>
-          <button onClick={handleNovoRegistro}>Registrar Outro Produto</button>
-        </>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Nome do Produto:</label><br />
-            <input type="text" name="nome" value={form.nome} onChange={handleChange} required />
-          </div>
+        {produtoSalvo ? (
+          <>
+            <p className="register-success-message">Produto registrado com sucesso!</p>
+            <button className="register-button" onClick={handleNovoRegistro}>
+              Registrar Outro Produto
+            </button>
+          </>
+        ) : (
+          <form className="register-form" onSubmit={handleSubmit}>
+            <div className="register-form-group">
+              <label className="register-form-label">Nome do Produto:</label>
+              <input
+                className="register-form-input"
+                type="text"
+                name="nome"
+                value={form.nome}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          <div>
-            <label>Preço:</label><br />
-            <input type="number" name="preco" value={form.preco} onChange={handleChange} step="0.01" required />
-          </div>
+            <div className="register-form-group">
+              <label className="register-form-label">Preço:</label>
+              <input
+                className="register-form-input"
+                type="number"
+                name="preco"
+                value={form.preco}
+                onChange={handleChange}
+                step="0.01"
+                required
+              />
+            </div>
 
-          <div>
-            <label>Quantidade:</label><br />
-            <input type="number" name="quantidade" value={form.quantidade} onChange={handleChange} required />
-          </div>
+            <div className="register-form-group">
+              <label className="register-form-label">Quantidade:</label>
+              <input
+                className="register-form-input"
+                type="number"
+                name="quantidade"
+                value={form.quantidade}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          <div>
-            <label>Status:</label><br />
-            <select name="status" value={form.status} onChange={handleChange}>
-              <option value="Ativo">Ativo</option>
-              <option value="Inativo">Inativo</option>
-            </select>
-          </div>
+            <div className="register-form-group">
+              <label className="register-form-label">Status:</label>
+              <select
+                className="register-form-select"
+                name="status"
+                value={form.status}
+                onChange={handleChange}
+              >
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+              </select>
+            </div>
 
-          <div className="image-upload-container">
-            <label htmlFor="upload-img" className="custom-upload-label">
-              Selecionar Imagem
-            </label>
-            <input
-              id="upload-img"
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              style={{ display: "none" }}  // Esconde o input de arquivo real
-            />
-            {/* Exibe o nome do arquivo selecionado */}
-            {imagemSelecionada && (
-              <p style={{ marginTop: '0.5rem', color: 'gray' }}>
-                Arquivo Selecionado: {imagemSelecionada}
-              </p>
-            )}
+            <div className="register-image-upload-container">
+              <label htmlFor="upload-img" className="register-custom-upload-label">
+                Selecionar Imagem
+              </label>
+              <input
+                id="upload-img"
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
+              />
+              {imagemSelecionada && <p>Arquivo Selecionado: {imagemSelecionada}</p>}
+              {imagemPreview && <img src={imagemPreview} alt="Pré-visualização" />}
+            </div>
 
-            {/* Exibe a pré-visualização da imagem, se houver */}
-            {imagemPreview && (
-              <div style={{ marginTop: '1rem' }}>
-                <img src={imagemPreview} alt="Pré-visualização" style={{ width: '100px', height: 'auto', borderRadius: '8px' }} />
-              </div>
-            )}
-          </div>
-
-          <button type="submit" style={{ marginTop: '1rem' }}>Salvar Produto</button>
-        </form>
-      )}
+            <button className="register-button" type="submit">Salvar Produto</button>
+          </form>
+        )}
+      </div>
     </div>
   );
 }
-

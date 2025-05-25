@@ -1,54 +1,155 @@
+/* Container geral */
 .login-container {
-    max-width: 400px;
-    margin: 5rem auto;
-    padding: 2rem;
-    background-color: #a8a8a8;
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(189, 189, 189, 0.7);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  background: linear-gradient(270deg, #252525, #444444, #444444);
+  background-size: 600% 600%;
+  animation: gradientAnimation 20s ease infinite;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+/* Mesma animação de gradiente que você já usou */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Caixa do formulário com vidro fosco */
+.login-container > form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem 2.5rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 380px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Animação fadeInUp igual à do registro */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .login-container h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #000000;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .login-container label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.3rem;
-    color: #333;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+}
+
+/* Título */
+.login-container > h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.8rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Labels */
+.login-container label {
+  font-weight: 600;
+  color: #e1e1e1;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/* Inputs */
+.login-container input[type="email"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-weight: 500;
+  transition: box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.login-container input[type="email"]:focus,
+.login-container input[type="password"]:focus {
+  box-shadow: 0 0 8px #575fcf;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Botões do formulário */
+.login-container button[type="submit"] {
+  margin-top: 0.8rem;
+  width: 100%;
+  padding: 0.9rem 0;
+  background-color: #3b3b98;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-container button[type="submit"]:hover {
+  background-color: #575fcf;
+  transform: scale(1.05);
+}
+
+/* Container para o texto e botão de criar conta */
+.login-container > div {
+  margin-top: 1.8rem;
+  text-align: center;
+  color: #bbb;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Botão criar conta */
+.login-container > div > button {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #3b3b98;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-container > div > button:hover {
+  background-color: #575fcf;
+  transform: scale(1.05);
+}
+
+/* Mensagem de erro */
+.login-container p[style] {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #ff6b6b;
+  text-shadow: 0 0 5px rgba(255, 107, 107, 0.7);
+}
+
+/* Responsividade */
+@media (max-width: 420px) {
+  .login-container > form {
+    width: 90vw;
+    padding: 1.5rem 1.8rem;
   }
-  
-  .login-container input {
-    width: 100%;
-    padding: 0.6rem;
-    margin-bottom: 1rem;
-    border: 0px solid #e2e2e2;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    background-color: #e0e0e0;
-    color: #302525;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
-  }
-  
-  .login-container button {
-    width: 100%;
-    padding: 0.7rem;
-    background-color: #008f6b;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
-  }
-  
-  .login-container button:hover {
-    background-color: #004e0a;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
-  }
-  
+}
