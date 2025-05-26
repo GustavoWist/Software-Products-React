@@ -1,4 +1,3 @@
-/* Container geral */
 .ativacao-container {
   height: 100vh;
   width: 100vw;
@@ -15,14 +14,14 @@
   color: white;
 }
 
-/* Animação do gradiente */
+
 @keyframes gradientAnimation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Título */
+
 .ativacao-container > h2 {
   font-size: 2.2rem;
   margin-bottom: 1.8rem;
@@ -30,7 +29,7 @@
   text-align: center;
 }
 
-/* Mensagem de erro/sucesso */
+
 .ativacao-message {
   margin-bottom: 1rem;
   font-weight: 600;
@@ -39,7 +38,7 @@
   text-align: center;
 }
 
-/* Formulário com vidro fosco */
+
 .ativacao-form {
   background: rgba(255, 255, 255, 0.1);
   padding: 2rem 2.5rem;
@@ -55,7 +54,7 @@
   animation: fadeInUp 0.8s ease forwards;
 }
 
-/* Animação fadeInUp */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -67,7 +66,7 @@
   }
 }
 
-/* Labels */
+
 .ativacao-label {
   font-weight: 600;
   color: #e1e1e1;
@@ -75,7 +74,7 @@
   text-align: left;
 }
 
-/* Inputs */
+
 .ativacao-input {
   width: 100%;
   padding: 0.6rem 1rem;
@@ -96,7 +95,7 @@
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Botão */
+
 .ativacao-button {
   margin-top: 0.8rem;
   width: 100%;
@@ -117,7 +116,7 @@
   transform: scale(1.05);
 }
 
-/* Container para redirecionar ao login */
+
 .ativacao-login-redirect {
   margin-top: 1.8rem;
   text-align: center;
@@ -130,7 +129,7 @@
   margin-bottom: 0.6rem;
 }
 
-/* Responsividade */
+
 @media (max-width: 420px) {
   .ativacao-form {
     width: 90vw;

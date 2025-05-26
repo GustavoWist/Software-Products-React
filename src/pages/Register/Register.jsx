@@ -38,7 +38,7 @@ export default function Register() {
         setMensagem(data.message || 'Usuário registrado com sucesso!');
         setTimeout(() => {
           navigate('/ativar');
-        }, 3000); // redireciona após 3s
+        }, 3000);
       } else {
         setErro(data.error || 'Erro no registro.');
       }
