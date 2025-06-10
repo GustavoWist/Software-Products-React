@@ -24,7 +24,8 @@ export default function SalesHistory() {
   }, []);
   
   function formatarData(dataStr) {
-    const data = new Date(dataStr);
+    const dataUTC = new Date(dataStr);
+    const data = new Date(dataUTC.getTime() - dataUTC.getTimezoneOffset() * 60000);
     const dia = String(data.getDate()).padStart(2, '0');
     const mes = String(data.getMonth() + 1).padStart(2, '0');
     const ano = data.getFullYear();
@@ -53,7 +54,7 @@ export default function SalesHistory() {
           <tbody>
             {vendas.map(venda => (
               <tr key={venda.id}>
-                <td>{venda.produto_id}</td>
+                <td>{venda.produto?.nome || 'product not found'}</td>
                 <td>{venda.quantidade_vendida}</td>
                 <td>R$ {venda.valor_total.toFixed(2)}</td>
                 <td>{formatarData(venda.data_venda)}</td>
